@@ -107,7 +107,7 @@ This script takes the combined `ATC_ASR_Dataset` and performs an 80-10-10 split 
 
 This script augments 50% of the training data in `ATC_ASR_Dataset_Splits/train`. For each selected audio sample, it generates three new augmented versions using between two and three simultaneous augmentation techniques (such as pitch shifting, noise injection, and bandpass filtering). Once complete, the original training set is replaced with its augmented counterpart.
 
-### `upload_dataset_to_huggingface`
+### `utils/upload_dataset_to_huggingface.py`
 
 This script uploads the final dataset, consisting of the train, validation, and test splits, from the `ATC_ASR_Dataset_Splits` directory to the Hugging Face Hub.
 
