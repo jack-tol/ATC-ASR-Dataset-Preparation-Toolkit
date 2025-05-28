@@ -33,10 +33,10 @@ These inconsistencies make the raw data unsuitable for direct use in ASR pipelin
 Raw UWB transcripts - irrelevant tags, broken characters, mixed language, raw numbers, inconsistent capitalization, unphonetized letters, etc.:
 
 ```
-- [air]Praha radar[czech_|] dobr� den[|_czech] [unintelligible] 9 0 W level t+
-- [ground]Skyshuttle 1 1 4 0 contact (Vienna(v�n)) 1 3 4  4 4 0 bye bye[speaker]
-- [ground]good afternoon Lufthansa 7 3 9 Praha radar contact descend FL 3 0 0 level by RAPET
-- [ground]Lufthansa 3 C N contact Bratislava 1 2 5 . 9 6 5 good bye
+[air]Praha radar[czech_|] dobr� den[|_czech] [unintelligible] 9 0 W level t+
+[ground]Skyshuttle 1 1 4 0 contact (Vienna(v�n)) 1 3 4  4 4 0 bye bye[speaker]
+[ground]good afternoon Lufthansa 7 3 9 Praha radar contact descend FL 3 0 0 level by RAPET
+[ground]Lufthansa 3 C N contact Bratislava 1 2 5 . 9 6 5 good bye
 ```
 
 ## Solution
