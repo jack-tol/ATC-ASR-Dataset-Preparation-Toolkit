@@ -8,8 +8,6 @@ In addition, the repository includes tools to further process the unified datase
 
 You can find download links and further details on each source corpus in the [Supported Datasets](#supported-datasets) section.
 
----
-
 ## The Problem
 
 Out of the box, the raw datasets present two major challenges.
@@ -30,8 +28,6 @@ Second, and particularly problematic in the case of the UWB ATC dataset, the tra
 
 These inconsistencies make the raw data unsuitable for direct use in ASR pipelines without substantial preprocessing and normalization.
 
----
-
 ### Illustrative Examples | Raw UWB ATC Dataset
 
 Raw UWB transcripts - irrelevant tags, broken characters, mixed language, raw numbers, inconsistent capitalization, unphonetized letters, etc.:
@@ -42,8 +38,6 @@ Raw UWB transcripts - irrelevant tags, broken characters, mixed language, raw nu
 - [ground]good afternoon Lufthansa 7 3 9 Praha radar contact descend FL 3 0 0 level by RAPET
 - [ground]Lufthansa 3 C N contact Bratislava 1 2 5 . 9 6 5 good bye
 ```
-
----
 
 ## Solution
 
@@ -68,8 +62,6 @@ When required, the scripts apply:
 
 These steps help ensure that the final data is consistent, clean, and ready for downstream ASR model training.
 
----
-
 ## Supported Datasets
 
 This repository includes processing scripts for the following Air Traffic Control (ATC) speech-text corpora:
@@ -92,8 +84,6 @@ This dataset is a publicly available 1-hour test subset released as part of the 
 
 **Download:** [ATCO2 1-Hour Test Subset](https://www.replaywell.com/atco2/download/ATCO2-ASRdataset-v1_beta.tgz)
 
----
-
 ## Creating the Combined Dataset
 
 The script `dataset_processing_scripts/create_combined_atc_asr_dataset.py` merges the outputs of the processed datasets (ATCC, ATCO2, and UWB) into a single unified dataset called `ATC_ASR_Dataset`.
@@ -104,8 +94,6 @@ This combined dataset contains:
 - A `texts/` directory with the corresponding transcripts
 
 Each file pair is matched by a unique ID. During this process, all audio is resampled to 16,000 Hz to ensure consistency across sources and compatibility with standard ASR pipelines.
-
----
 
 ## Additional Scripts: Splitting, Augmenting, and Uploading
 
@@ -127,8 +115,6 @@ Since offline data augmentation is applied to the training set prior to this ste
 
 All audio files are cast as `datasets.Audio` objects, ensuring compatibility with Hugging Face's ASR pipelines. By default, the dataset is uploaded as private. This can be changed by setting `private=False` in the `push_to_hub()` call.
 
----
-
 ## Related Work & Improvements
 
 This toolkit builds upon prior work by [Juan Pablo Zuluaga](https://github.com/idiap/atco2-corpus/tree/main/data/databases/uwb_atcc), who published a processing script and corresponding Hugging Face dataset for the UWB ATC corpus:
@@ -144,8 +130,6 @@ Key differences in this implementation include:
 - Modern, Python-based architecture: This repository is implemented entirely in Python, with modular and readable scripts. Mapping dictionaries, correction lists, and exclusion criteria are centralized in a `dataset_processing_scripts/utils.py` module and applied via clear function calls. This structure improves transparency and maintainability. Additional conveniences like `tqdm` progress bars make the processing workflow easier to follow and debug.
 
 The goal of these changes is to prioritize data quality, reproducibility, and developer usability. The result is a cleaner and more reliable dataset for ASR model development, particularly in domain-specific applications like air traffic communication.
-
----
 
 ## Conclusion
 
