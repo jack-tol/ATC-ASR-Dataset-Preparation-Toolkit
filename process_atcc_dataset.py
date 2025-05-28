@@ -13,8 +13,8 @@ random.seed(RANDOM_SEED)
 
 SEGMENT_ID_LENGTH = 20
 
-INPUT_DIR = 'ATC0_Raw_Data'
-DATASET_DIR = 'ATC0_Dataset'
+INPUT_DIR = 'ATCC_Raw_Data'
+DATASET_DIR = 'ATCC_Dataset'
 AUDIO_OUTPUT_DIR = os.path.join(DATASET_DIR, 'audios')
 TEXT_OUTPUT_DIR = os.path.join(DATASET_DIR, 'texts')
 SUBFOLDERS = ['atc0_bos', 'atc0_dca', 'atc0_dfw']
