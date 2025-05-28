@@ -1,0 +1,10 @@
+ATCC_Raw_Data/
+ATCO2_Raw_Data/
+UWB_Raw_Data/
+
+ATCC_Dataset/
+ATCO2_Dataset/
+UWB_Dataset/
+
+ATC_ASR_Dataset/
+ATC_ASR_Dataset_Splits/
