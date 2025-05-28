@@ -90,7 +90,7 @@ The ATCC dataset, distributed by the Linguistic Data Consortium (LDC), comprises
 
 This dataset is a publicly available 4-hour test subset released as part of the broader ATCO2 project. While the full ATCO2 corpus contains over 4,465 hours of English ATC speech data, it is not freely available. This smaller test portion, however, is openly accessible and provides a representative sample of the larger corpus. It includes a range of accents, speaker types (pilots and controllers), and environments, and serves as a valuable benchmarking resource for evaluating ASR models on real-world ATC audio.
 
-**Download:** [ATCO2 1-Hour Test Subset](https://www.atco2.org/data/atco2_1h_xml-tar.gz)
+**Download:** [ATCO2 1-Hour Test Subset](https://www.replaywell.com/atco2/download/ATCO2-ASRdataset-v1_beta.tgz)
 
 ---
 
