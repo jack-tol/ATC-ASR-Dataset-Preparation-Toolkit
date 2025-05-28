@@ -6,6 +6,8 @@ Each script is responsible for segmenting long recordings, filtering out unusabl
 
 In addition, the repository includes tools to further process the unified dataset, such as splitting, augmenting, and uploading it to the Hugging Face Hub, making it readily accessible for ASR training and fine-tuning.
 
+You can find the **ATC ASR Dataset**, which includes cleaned and combined data from the UWB and ATCO2 corpora, uploaded to Hugging Face Datasets here: [ATC_ASR_Dataset on Hugging Face](https://huggingface.co/datasets/jacktol/ATC_ASR_Dataset).
+
 You can find download links and further details on each source corpus in the [Supported Datasets](#supported-datasets) section.
 
 ## The Problem
@@ -138,3 +140,12 @@ This toolkit provides a full, end-to-end pipeline for transforming noisy, unstru
 From raw data ingestion and normalization to augmentation and publishing, each step has been designed to ensure consistency, scalability, and compatibility with modern ASR frameworks. The final dataset is aligned, resampled, split, and optionally augmented, resulting in a ready-to-use, Hugging Face-compatible format.
 
 Whether you are building ASR models for aviation-specific applications or experimenting with accented, domain-specific English, this dataset preparation pipeline offers a strong, reproducible foundation.
+
+## References
+
+- [ATC_ASR_Dataset (Combined and Cleaned Dataset)](https://huggingface.co/datasets/jacktol/ATC_ASR_Dataset)
+- [ATCC Corpus (LDC94S14A, Raw)](https://catalog.ldc.upenn.edu/LDC94S14A)
+- [ATCO2 1-Hour Test Subset (Raw)](https://www.replaywell.com/atco2/download/ATCO2-ASRdataset-v1_beta.tgz)
+- [Juan Pablo Zuluaga – UWB ATC Dataset on GitHub](https://github.com/idiap/atco2-corpus/tree/main/data/databases/uwb_atcc)
+- [Juan Pablo Zuluaga – UWB ATC Dataset on Hugging Face](https://huggingface.co/datasets/Jzuluaga/uwb_atcc)
+- [UWB ATC Corpus (Raw)](https://lindat.mff.cuni.cz/repository/xmlui/handle/11858/00-097C-0000-0001-CCA1-0)
