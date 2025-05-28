@@ -18,15 +18,15 @@ First, none of the datasets are properly segmented into transmission–text pair
 
 Second, and particularly problematic in the case of the UWB ATC dataset, the transcripts are extremely unclean. Common issues include:
 
-- Numerous spelling mistakes  
-- Corrupted or non-Unicode characters  
-- Symbols and broken formatting  
-- Inconsistent capitalization  
-- Missing phonetic expansions (e.g., "N" instead of "NOVEMBER")  
-- Numeric digits instead of their word equivalents (e.g., "350" instead of "THREE FIVE ZERO")  
-- Nested parentheses indicating intended vs. pronounced words  
-- Inconsistent tagging schemes scattered throughout  
-- Transmissions mixing English with non-English words in the same sentence  
+- Numerous spelling mistakes
+- Corrupted or non-Unicode characters
+- Symbols and broken formatting
+- Inconsistent capitalization
+- Missing phonetic expansions (e.g., "N" instead of "NOVEMBER")
+- Numeric digits instead of their word equivalents (e.g., "350" instead of "THREE FIVE ZERO")
+- Nested parentheses indicating intended vs. pronounced words
+- Inconsistent tagging schemes scattered throughout
+- Transmissions mixing English with non-English words in the same sentence
 
 These inconsistencies make the raw data unsuitable for direct use in ASR pipelines without substantial preprocessing and normalization.
 
@@ -49,22 +49,22 @@ Raw UWB transcripts - irrelevant tags, broken characters, mixed language, raw nu
 
 To address the issues present in the raw datasets and produce a clean, ASR-ready dataset, three dedicated Python scripts were developed:
 
-- `process_atcc_dataset.py`  
-- `process_atco2_dataset.py`  
-- `process_uwb_dataset.py`  
+- `dataset_processing_scripts/process_atcc_dataset.py`
+- `dataset_processing_scripts/process_atco2_dataset.py`
+- `dataset_processing_scripts/process_uwb_dataset.py` 
 
 Each script takes as input the path to the raw dataset as downloaded and performs the necessary preprocessing steps to produce high-quality `wav + txt` utterance pairs.
 
 When required, the scripts apply:
 
-- General spelling corrections  
-- Diacritic normalization  
-- Letter-to-phonetic word mappings (e.g., "N" → "NOVEMBER")  
-- Number-to-word conversions (e.g., "3 5 0" → "THREE FIVE ZERO")  
-- Capitalization normalization (all text converted to uppercase)  
-- In-place removal of non-critical tags (e.g., `[GROUND]`, `[AIR]`, `[SPEAKER]`)  
-- Exclusion of transmissions containing certain tags or conditions (e.g., `[|_NO_ENG]`, `[CZECH_]`, `[|_UNINTELLIGIBLE]`)  
-- Manual removal of specific transmissions with incorrect or unreliable ground truths  
+- General spelling corrections
+- Diacritic normalization
+- Letter-to-phonetic word mappings (e.g., "N" → "NOVEMBER")
+- Number-to-word conversions (e.g., "3 5 0" → "THREE FIVE ZERO")
+- Capitalization normalization (all text converted to uppercase)
+- In-place removal of non-critical tags (e.g., `[GROUND]`, `[AIR]`, `[SPEAKER]`)
+- Exclusion of transmissions containing certain tags or conditions (e.g., `[|_NO_ENG]`, `[CZECH_]`, `[|_UNINTELLIGIBLE]`)
+- Manual removal of specific transmissions with incorrect or unreliable ground truths
 
 These steps help ensure that the final data is consistent, clean, and ready for downstream ASR model training.
 
@@ -96,12 +96,12 @@ This dataset is a publicly available 1-hour test subset released as part of the 
 
 ## Creating the Combined Dataset
 
-The script `create_combined_atc_asr_dataset.py` merges the outputs of the processed datasets (ATCC, ATCO2, and UWB) into a single unified dataset called `ATC_ASR_Dataset`.
+The script `dataset_processing_scripts/create_combined_atc_asr_dataset.py` merges the outputs of the processed datasets (ATCC, ATCO2, and UWB) into a single unified dataset called `ATC_ASR_Dataset`.
 
 This combined dataset contains:
 
-- An `audios/` directory with all audio files  
-- A `texts/` directory with the corresponding transcripts  
+- An `audios/` directory with all audio files
+- A `texts/` directory with the corresponding transcripts
 
 Each file pair is matched by a unique ID. During this process, all audio is resampled to 16,000 Hz to ensure consistency across sources and compatibility with standard ASR pipelines.
 
@@ -111,11 +111,11 @@ Each file pair is matched by a unique ID. During this process, all audio is resa
 
 To further prepare the combined dataset for model training, the repository includes additional utility scripts.
 
-### `split_atc_asr_dataset.py`
+### `utils/split_atc_asr_dataset.py`
 
 This script takes the combined `ATC_ASR_Dataset` and performs an 80-10-10 split into training, validation, and test sets. The split is saved under `ATC_ASR_Dataset_Splits`, preserving consistent audio–transcript pairings. Pre-splitting the data ensures that only the training set is augmented in the next stage.
 
-### `offline_data_augmentation.py`
+### `utils/offline_data_augmentation.py`
 
 This script augments 50% of the training data in `ATC_ASR_Dataset_Splits/train`. For each selected audio sample, it generates three new augmented versions using between two and three simultaneous augmentation techniques (such as pitch shifting, noise injection, and bandpass filtering). Once complete, the original training set is replaced with its augmented counterpart.
 
@@ -131,7 +131,7 @@ All audio files are cast as `datasets.Audio` objects, ensuring compatibility wit
 
 ## Related Work & Improvements
 
-This toolkit builds upon prior work by [Juan Pablo Zuluaga](https://github.com/idiap/atco2-corpus/tree/main/data/databases/uwb_atcc), who published a processing script and corresponding Hugging Face dataset for the UWB ATC corpus:  
+This toolkit builds upon prior work by [Juan Pablo Zuluaga](https://github.com/idiap/atco2-corpus/tree/main/data/databases/uwb_atcc), who published a processing script and corresponding Hugging Face dataset for the UWB ATC corpus:
 [UWB ATC Dataset on Hugging Face](https://huggingface.co/datasets/Jzuluaga/uwb_atcc)
 
 While that effort helped make the UWB dataset more accessible to the ASR community, this repository adopts a more rigorous approach to data cleaning and preparation.
@@ -141,7 +141,7 @@ Key differences in this implementation include:
 - Capitalization normalization: All output transcripts are fully capitalized to maintain consistency across datasets.
 - Stricter tag handling: Transmissions containing tags such as `[UNINTELLIGIBLE]`, `[|_NO_ENG]`, or `[CZECH_]` are excluded entirely, rather than simply removing the tag. This avoids including transcripts that do not match their corresponding audio.
 - Manual filtering: A set of transmissions was manually reviewed and excluded due to confirmed issues with alignment or transcription accuracy.
-- Modern, Python-based architecture: This repository is implemented entirely in Python, with modular and readable scripts. Mapping dictionaries, correction lists, and exclusion criteria are centralized in a `utils.py` module and applied via clear function calls. This structure improves transparency and maintainability. Additional conveniences like `tqdm` progress bars make the processing workflow easier to follow and debug.
+- Modern, Python-based architecture: This repository is implemented entirely in Python, with modular and readable scripts. Mapping dictionaries, correction lists, and exclusion criteria are centralized in a `dataset_processing_scripts/utils.py` module and applied via clear function calls. This structure improves transparency and maintainability. Additional conveniences like `tqdm` progress bars make the processing workflow easier to follow and debug.
 
 The goal of these changes is to prioritize data quality, reproducibility, and developer usability. The result is a cleaner and more reliable dataset for ASR model development, particularly in domain-specific applications like air traffic communication.
 
