@@ -127,7 +127,7 @@ Key differences in this implementation include:
 - Capitalization normalization: All output transcripts are fully capitalized to maintain consistency across datasets.
 - Stricter tag handling: Transmissions containing tags such as `[UNINTELLIGIBLE]`, `[|_NO_ENG]`, or `[CZECH_]` are excluded entirely, rather than simply removing the tag. This avoids including transcripts that do not match their corresponding audio.
 - Manual filtering: A set of transmissions was manually reviewed and excluded due to confirmed issues with alignment or transcription accuracy.
-- Modern, Python-based architecture: This repository is implemented entirely in Python, with modular and readable scripts. Mapping dictionaries, correction lists, and exclusion criteria are centralized in a `dataset_processing_scripts/utils.py` module and applied via clear function calls. This structure improves transparency and maintainability. Additional conveniences like `tqdm` progress bars make the processing workflow easier to follow and debug.
+- Modern, Python-based architecture: This repository is implemented entirely in Python, with modular and readable scripts. Mapping dictionaries, correction lists, and exclusion criteria are centralized in a `dataset_processing_scripts/utils.py` module and applied via clear function calls. This structure improves transparency and maintainability.
 
 The goal of these changes is to prioritize data quality, reproducibility, and developer usability. The result is a cleaner and more reliable dataset for ASR model development, particularly in domain-specific applications like air traffic communication.
 
