@@ -6,7 +6,7 @@ Each script is responsible for segmenting long recordings, filtering out unusabl
 
 In addition, the repository includes tools to further process the unified dataset, such as splitting, augmenting, and uploading it to the Hugging Face Hub, making it readily accessible for ASR training and fine-tuning.
 
-You can find the **ATC ASR Dataset**, which includes cleaned and combined data from the UWB and ATCO2 corpora, uploaded to Hugging Face Datasets here: [ATC_ASR_Dataset on Hugging Face](https://huggingface.co/datasets/jacktol/ATC_ASR_Dataset).
+You can find the **ATC ASR Dataset**, which includes cleaned and combined data from the UWB and ATCO2 corpora, uploaded to Hugging Face Datasets here: [ATC ASR Dataset on Hugging Face](https://huggingface.co/datasets/jacktol/ATC_ASR_Dataset).
 
 You can find download links and further details on each source corpus in the [Supported Datasets](#supported-datasets) section.
 
